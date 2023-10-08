@@ -1,0 +1,220 @@
+---
+title: "L04 Data Import"
+subtitle: "Data Science 1 with R (STAT 301-1)"
+author: "YOUR NAME"
+
+format:
+  html:
+    toc: true
+    embed-resources: true
+    code-fold: show
+    link-external-newwindow: true
+
+execute:
+  warning: false
+  
+from: markdown+emoji 
+---
+
+
+::: {.callout-tip icon=false}
+
+## Github Repo Link
+
+To link to your github **repo**sitory, appropriately edit the example link below. Meaning replace `https://your-github-repo-url` with your github repo url. Suggest verifying the link works before submitting.
+
+[https://your-github-repo-url](https://your-github-repo-url)
+
+:::
+
+## Overview
+
+The goal of this lab is to learn how to utilize the `readr` package, a member of the `tidyverse`, to load flat files (e.g., `csv` & `txt`) and to gain a better understanding of the basic data structure called a "tibble". Tibbles are data frames, but they tweak some of R's older behaviors to make life a little easier by avoiding unintentional mistakes/errors. The `tibble` package, another member of the `tidyverse`, provides the framework for these opinionated data frames which make working with data in the tidyverse possible.
+
+Useful resources:
+
+- [`tibble` package home page](http://tibble.tidyverse.org/index.html).
+- [`readr` package home page](http://readr.tidyverse.org/articles/readr.html)
+
+Additionally, you will learn how to ignore files that are too large for version control! 
+## Load packages
+
+You should always begin by loading all necessary packages towards the beginning of your document.
+
+```{r}
+#| label: load-pkgs
+#| code-fold: false
+
+# Loading package(s)
+
+```
+
+## Datasets
+
+All datasets are either coded inline or contained in the `data` sub-directory.
+
+For one of the problems, you may opt to use one of our familiar datasets, `diamonds` or `mpg`, which are contained in `ggplot2`.
+
+## Exercises
+
+### Exercise 1
+
+Demonstrate how to read in `TopBabyNamesByState.txt` contained in the `data` sub-directory using the appropriate function from the `readr` package. After reading in the data, determine the top male and female names in 1984 for South Dakota.
+
+::: {.callout-tip icon="false"}
+## Solution
+
+YOUR SOLUTION HERE
+:::
+
+### Exercise 2
+
+Consider `read_csv()` and `read_tsv()`. When would you use each function?
+Apart from `file`, `skip`, and `comment`, what other arguments do they have in common?
+
+::: {.callout-tip icon="false"}
+## Solution
+
+YOUR SOLUTION HERE
+:::
+
+### Exercise 3
+
+What are the most important arguments to `read_fwf()`.
+
+Read in the fixed width file `fwf_example.txt` contained in the sub-directory `data`. We have provided the column names so the final dataset has appropriate names. You may want to look at the dataset in a text editor to get an idea of what you are dealing with.
+
+```{r}
+#| label: ex-3
+
+# Column names.
+column_names <- c(
+  "Entry", "Per.", "Post Date", "GL Account", "Description", "Srce.", 
+  "Cflow", "Ref.", "Post", "Debit", "Credit", "Alloc."
+  )
+```
+
+::: {.callout-tip icon="false"}
+## Solution
+
+YOUR SOLUTION HERE
+:::
+
+### Exercise 4
+
+Practice referring to non-syntactic names in the following data frame by:
+
+```{r}
+#| label: ex-04
+
+# toy dataset
+annoying <- tibble(
+  `1` = 1:10,
+  `2` = `1` * 2 + rnorm(length(`1`))
+)
+```
+
+a.  Extracting the variable called 1.
+b.  Plotting a scatterplot of 1 vs 2.
+c.  Creating a new column called 3 which is 2 divided by 1.
+d.  Renaming the columns to one, two and three.
+
+::: {.callout-tip icon="false"}
+## Solution
+
+YOUR SOLUTION HERE
+:::
+
+### Exercise 5
+
+Demonstrate how to manually input the data table below into R using each of these functions:
+
+-   `tibble()`
+-   `tribble()`
+
+| price | store   | ounces |
+|-------|---------|--------|
+| 3.99  | target  | 128    |
+| 3.75  | walmart | 128    |
+| 3.00  | amazon  | 128    |
+
+::: {.callout-tip icon="false"}
+## Solution
+
+YOUR SOLUTION HERE
+:::
+
+### Exercise 6
+
+What function in `janitor` helps you deal with non-syntactic column names in R and and also ensures column names are systematically handled? Demonstrate its use.
+
+::: {.callout-tip icon="false"}
+## Solution
+
+YOUR SOLUTION HERE
+:::
+
+### Exercise 7
+
+::: {.callout-important}
+GitHub (free account) cannot store large files. If you try to commit and push a large dataset you will have an ERROR! Any file over 100 MB (100,000 KB) needs to be added to the `.gitignore` file BEFORE committing.
+
+**We need to do that for this exercise!**
+:::
+
+1. Start by committing and pushing your current work to GitHub! 
+1. Then download the `cc-est2016-alldata.csv` file from Canvas and add it to the `data` subdirectory. **Do not commit!** We need to add the file to the `.gitignore` file first.
+1. **Add `cc-est2016-alldata.csv` to the .gitignore** file. That is, add `data/cc-est2016-alldata.csv` to the file with an appropriate header. If the file has been added (meaning ignored) correctly, it will NOT appear in the Git pane to commit --- may need to refresh the pane. 
+1. Once the file is successfully ignored, commit with the comment "large data ignored!"
+
+Now that you have taken care of the large file issue, read the file in and just print the first 5 observations.
+
+::: {.callout-note collapse=true}
+
+## Oh no, I commited a large file!
+
+If you Commit a large file and try to push to GitHub you will have an issue! Do NOT keep clicking Commit. You **MUST UNDO** the Commit issue before moving forward. The more times you click Commit and generate the error the more Commits you will then need to undo. To undo a Commit, in the Terminal type: `git reset --soft HEAD~1`
+
+To automatically find and add files over 100MB to the .gitignore you can type the following code in the Terminal: 
+
+```{bash}
+#| label: terminal
+#| code-fold: false
+#| eval: false
+
+find . -size +100M | sed 's|^\./||g' | cat >> .gitignore; awk '!NF || !seen[$0]++' .gitignore
+```
+
+Note: You will need to retype this **EVERY** time a new file over 100MB is added to your project.
+:::
+
+::: {.callout-tip icon="false"}
+## Solution
+
+YOUR SOLUTION HERE
+:::
+
+## Case Study
+
+Consider the `tinder_data` file in the `data` subdirectory.^[This dataset was sourced from [Swipestats.io](https://www.swipestats.io/).]
+
+-   Read in the `tinder_data`
+
+-   Is `tinder_data` a `tibble` and how do you know?
+
+-   For the variable `user_interested_in`, use the `if_else()` function to change "M and F" to "B" for both.
+
+-   Convert `user_gender` and `user_interested_in` into factor variables.
+
+-   Write out a copy of the clean dataset to the `data` sub-directory as a csv file named `tinder_clean.csv`.
+
+-   Write out a copy of the clean dataset to the `data` sub-directory as an RDS file named `tinder_clean.rds`.
+
+-   Read both `tinder_clean.csv` and `tinder_clan.rds` back into R. Explore the two data frame objects and list the differences between the two. When might writing out to one file type (csv or rds) be more beneficial than the other?
+
+::: {.callout-tip icon="false"}
+## Solution
+
+YOUR SOLUTION HERE
+:::
+
