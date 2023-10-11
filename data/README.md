@@ -5,6 +5,11 @@ Tinder data collected from [Swipestats.io](https://www.swipestats.io/).
 - `tinder_data.csv`
 - `tinder_data_codebook.csv` 
 
+Other datasets
+
+- `TopBabyNamesbySrar.txt`
+- `fwf_example.txt`
+
 ### Exercise 7 dataset is too large to version control
 
 2016 US county characteristic totals collected from [US Census Bureau](https://www2.census.gov/programs-surveys/popest/datasets/2010-2016/counties/totals/)
