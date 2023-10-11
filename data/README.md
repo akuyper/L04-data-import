@@ -7,7 +7,7 @@ Tinder data collected from [Swipestats.io](https://www.swipestats.io/).
 
 Other datasets
 
-- `TopBabyNamesbySrar.txt`
+- `TopBabyNamesbyState.txt`
 - `fwf_example.txt`
 
 ### Exercise 7 dataset is too large to version control
