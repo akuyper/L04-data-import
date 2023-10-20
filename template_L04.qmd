@@ -37,6 +37,7 @@ Useful resources:
 - [`readr` package home page](http://readr.tidyverse.org/articles/readr.html)
 
 Additionally, you will learn how to ignore files that are too large for version control! 
+
 ## Load packages
 
 You should always begin by loading all necessary packages towards the beginning of your document.
