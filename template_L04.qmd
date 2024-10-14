@@ -52,9 +52,7 @@ You should always begin by loading all necessary packages towards the beginning 
 
 ## Datasets
 
-All datasets are either coded inline or contained in the `data` sub-directory.
-
-For one of the problems, you may opt to use one of our familiar datasets, `diamonds` or `mpg`, which are contained in `ggplot2`.
+Typically, you would load all data towards the beginning of your document with the loading of packages. However, since the goal of this lab is to learn how to import data using `readr`, this code will be part of your exercise solutions. You will find that the datasets are either coded inline or contained in the `data` sub-directory. For one of the exercises, you may opt to use one of our familiar datasets, `diamonds` or `mpg`, which are contained in `ggplot2`.
 
 ## Exercises
 
@@ -81,7 +79,7 @@ YOUR SOLUTION HERE
 
 ### Exercise 3
 
-What are the most important arguments to `read_fwf()`.
+What are the most important arguments to `read_fwf()`?
 
 Read in the fixed width file `fwf_example.txt` contained in the sub-directory `data`. We have provided the column names so the final dataset has appropriate names. You may want to look at the dataset in a text editor to get an idea of what you are dealing with.
 
@@ -106,7 +104,7 @@ YOUR SOLUTION HERE
 Practice referring to non-syntactic names in the following data frame by:
 
 ```{r}
-#| label: ex-04
+#| label: ex-4
 
 # toy dataset
 annoying <- tibble(
@@ -147,7 +145,7 @@ YOUR SOLUTION HERE
 
 ### Exercise 6
 
-What function in `janitor` helps you deal with non-syntactic column names in R and and also ensures column names are systematically handled? Demonstrate its use.
+What function in `janitor` helps you deal with non-syntactic column names in R and also ensures column names are systematically handled? Demonstrate its use.
 
 ::: {.callout-tip icon="false"}
 ## Solution
@@ -174,13 +172,12 @@ Now that you have taken care of the large file issue, read the file in and just 
 
 ## Oh no, I commited a large file!
 
-If you Commit a large file and try to push to GitHub you will have an issue! Do NOT keep clicking Commit. You **MUST UNDO** the Commit issue before moving forward. The more times you click Commit and generate the error the more Commits you will then need to undo. To undo a Commit, in the Terminal type: `git reset --soft HEAD~1`
+If you Commit a large file and try to push to GitHub you will have an issue! Do NOT keep clicking Commit. You **MUST UNDO** the Commit issue before moving forward. The more times you click Commit and generate the error the more Commits you will then need to undo. To undo a Commit, in the Terminal type: `git reset --soft HEAD~1` --- may need to refresh the git pane.
 
 To automatically find and add files over 100MB to the .gitignore you can type the following code in the Terminal: 
 
 ```{bash}
 #| label: terminal
-#| code-fold: false
 #| eval: false
 
 find . -size +100M | sed 's|^\./||g' | cat >> .gitignore; awk '!NF || !seen[$0]++' .gitignore
@@ -196,6 +193,12 @@ YOUR SOLUTION HERE
 :::
 
 ## Case Study
+
+::: {.callout-warning}
+
+The work for this case study is not aimed at producing something for a boss. It is aimed at practicing the handling and organizing of data files. We also want to gain an understanding of why we might use different file types. Therefore, providing and displaying code is expected. Raw tibble output is acceptable (meaning, you do not need to use `kable()` to make tables).
+
+:::
 
 Consider the `tinder_data` file in the `data` subdirectory.^[This dataset was sourced from [Swipestats.io](https://www.swipestats.io/).]
 

@@ -29,8 +29,11 @@
 
 # mac related files
 *.DS_Store
+**/.DS_Store
 
 # ignore files (likely datasets) if too large (> 100 MB)
 # specify pathway to dataset data/project_dataset.csv
 # if all datasets are too large then use data/*.csv (only ignores CSVs)
 # if you have other file types then use appropriate extension data/*.rds
+# Terminal code to find files that are too large
+# find . -size +100M | sed 's|^\./||g' | cat >> .gitignore; awk '!NF || !seen[$0]++' .gitignore
