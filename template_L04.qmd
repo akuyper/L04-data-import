@@ -39,8 +39,8 @@ The goal of this lab is to learn how to utilize the `readr` package, a member of
 
 Useful resources:
 
-- [`tibble` package home page](http://tibble.tidyverse.org/index.html).
-- [`readr` package home page](http://readr.tidyverse.org/articles/readr.html)
+- [`tibble` package getting started page](https://tibble.tidyverse.org/articles/tibble.html)
+- [`readr` package getting started page](https://readr.tidyverse.org/articles/readr.html)
 
 Additionally, you will learn how to ignore files that are too large for version control! 
 
@@ -176,17 +176,24 @@ Now that you have taken care of the large file issue, read the file in and just 
 
 ::: {.callout-note collapse=true}
 
-## Oh no, I commited a large file!
+## Oh no, I committed a large file!
 
 If you Commit a large file and try to push to GitHub you will have an issue! Do NOT keep clicking Commit. You **MUST UNDO** the Commit issue before moving forward. The more times you click Commit and generate the error the more Commits you will then need to undo. To undo a Commit, in the Terminal type: `git reset --soft HEAD~1` --- may need to refresh the git pane.
 
-To automatically find and add files over 100MB to the .gitignore you can type the following code in the Terminal: 
+To automatically find and add files over 100MB to the .gitignore you can type the following code R Code: 
 
-```{bash}
+```{r}
 #| label: terminal
 #| eval: false
 
-find . -size +100M | sed 's|^\./||g' | cat >> .gitignore; awk '!NF || !seen[$0]++' .gitignore
+# list all files
+big_files <- list.files(recursive = TRUE)
+# only keep files larger than 100MB
+big_files <- big_files[file.size(big_files) > 100 * 1024^2]
+
+# add them to .gitignore -- function automatically ignores hidden 
+# folders like .git
+usethis::use_git_ignore(big_files)
 ```
 
 Note: You will need to retype this **EVERY** time a new file over 100MB is added to your project.
@@ -220,7 +227,7 @@ Consider the `tinder_data` file in the `data` subdirectory.^[This dataset was so
 
 -   Write out a copy of the clean dataset to the `data` sub-directory as an RDS file named `tinder_clean.rds`.
 
--   Read both `tinder_clean.csv` and `tinder_clan.rds` back into R. Explore the two data frame objects and list the differences between the two. When might writing out to one file type (csv or rds) be more beneficial than the other?
+-   Read both `tinder_clean.csv` and `tinder_clean.rds` back into R. Explore the two data frame objects and list the differences between the two. When might writing out to one file type (csv or rds) be more beneficial than the other?
 
 ::: {.callout-tip icon="false"}
 ## Solution
